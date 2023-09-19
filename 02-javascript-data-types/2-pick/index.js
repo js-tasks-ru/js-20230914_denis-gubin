@@ -16,18 +16,3 @@ export const pick = (obj, ...fields) => {
   return cloneObject;
 };
 
-/**
- * checkInList - Checking either value exists in fields
- * @param {string} value - value to find
- * @param {...string} fields - properties
- * @returns {boolean} - true if value exists in fields else false
- */
-export function checkInList(value, ...fields) {
-  for (let field of fields) {
-    if (value === field) {
-      return true;
-    }
-  }
-
-  return false;
-}
