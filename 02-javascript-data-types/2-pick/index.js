@@ -7,19 +7,11 @@
 export const pick = (obj, ...fields) => {
   let cloneObject = {};
 
-  // for (let key in obj) {
-  //   if (checkInList(key, ...fields)) {
-  //     cloneObject[key] = obj[key];
-  //   }
-  // }
-  // В чем преимущество способа ниже с Object.entries(obj) перед текущим способом перебора полей объекта ?
-
   for (const [key, value] of Object.entries(obj)) {
-    if (checkInList(key, ...fields)) {
+    if (fields.includes(key)) {
       cloneObject[key] = value;
     }
   }
-
 
   return cloneObject;
 };
