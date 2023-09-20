@@ -13,6 +13,7 @@ export function sortStrings(arr, param = 'asc') {
 
   return copyArray.sort(compare(param));
 }
+
 // можно ли в js обходится без стрелочных функций, это же не будет not js style ?
 function compare(setDirection) {
   if (setDirection === 'desc') {
