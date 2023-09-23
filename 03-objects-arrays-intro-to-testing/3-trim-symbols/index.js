@@ -17,12 +17,11 @@ export function trimSymbols(string, size) {
   for (const char of string) {
     if (char === tmpChar) {
       if (count >= size) {
-
         continue;
       }
+
       count++;
       resultStr += char;
-
       continue;
     }
 

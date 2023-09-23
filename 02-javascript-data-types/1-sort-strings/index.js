@@ -9,20 +9,40 @@ const localeEn = "en-US";
 const localeRu = "ru-RU";
 
 export function sortStrings(arr, param = 'asc') {
-  let copyArray = [...arr];
-
-  return copyArray.sort(compare(param));
+  return [...arr].sort(compare(param));
 }
-// можно ли в js обходится без стрелочных функций, это же не будет not js style ?
 function compare(setDirection) {
   if (setDirection === 'desc') {
-    return function (a, b) {
-      return b.localeCompare(a, [localeRu + "-u-kf-upper", localeEn + "-u-kf-upper"], {sensitivity: 'case'});
-    };
+    return compareDesc();
   }
+
+  return compareAsc();
+}
+
+function compareAsc() {
   return function (a, b) {
     return a.localeCompare(b, [localeRu + "-u-kf-upper", localeEn + "-u-kf-upper"], {sensitivity: 'case'});
   };
 }
 
+function compareDesc() {
+  return function (a, b) {
+    return b.localeCompare(a, [localeRu + "-u-kf-upper", localeEn + "-u-kf-upper"], {sensitivity: 'case'});
+  };
+}
 
+/*
+Решение преподавателя:
+
+function sortAsc(a, b) {
+  return a.localeCompare(b, ['ru', 'en'], { caseFirst: 'upper' }))
+}
+
+function sortDesc(a, b) {
+  return b.localeCompare(a, ['ru', 'en'], { caseFirst: 'upper' }));
+}
+
+export function sortStrings(arr, param = 'asc') {
+  return [..arr].sort(param === 'asc' ? sortAsc : sortDesc);
+};
+ */
