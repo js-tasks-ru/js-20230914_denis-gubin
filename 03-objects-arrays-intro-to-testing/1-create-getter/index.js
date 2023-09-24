@@ -4,19 +4,22 @@
  * @returns {function} - function-getter which allow get value from object by set path
  */
 export function createGetter(path) {
-  let partParts = path.split(".");
+  const partParts = path.split(".");
+  let currentIndex = 0;
 
   return function deepIntoObj(obj) {
     if (typeof obj !== 'object') {
       return obj;
     }
 
-    let keys = Object.keys(obj);
-    for (let i = 0; i < keys.length;i++) {
-      if (keys[i] === partParts[i]) {
-        partParts = partParts.slice(1);
-        return deepIntoObj(obj[keys[i]]);
-      }
+    if (currentIndex > partParts.length - 1) {
+      return {};
     }
+
+    const currentKey = partParts[currentIndex];
+    currentIndex += 1;
+
+    deepIntoObj(partParts.shift());
+    return deepIntoObj(obj[currentKey]);
   };
 }
