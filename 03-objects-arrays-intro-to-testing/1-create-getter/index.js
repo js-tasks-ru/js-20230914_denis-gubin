@@ -19,7 +19,6 @@ export function createGetter(path) {
     const currentKey = partParts[currentIndex];
     currentIndex += 1;
 
-    deepIntoObj(partParts.shift());
     return deepIntoObj(obj[currentKey]);
   };
 }
