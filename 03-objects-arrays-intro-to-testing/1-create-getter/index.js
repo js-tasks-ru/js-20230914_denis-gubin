@@ -3,7 +3,7 @@
  * @param {string} path - the strings path separated by dot
  * @returns {function} - function-getter which allow get value from object by set path
  */
-function createGetter(path) {
+export function createGetter(path) {
   const partParts = path.split(".");
   let currentIndex = 0;
 
@@ -20,11 +20,5 @@ function createGetter(path) {
   };
 }
 
-const getter = createGetter('a.b');
 
-console.log(getter({ a: null }));
-console.log(getter({ a: { b: { c: {} }}}));
-console.log(getter({ a: { b: { c: null }}}));
 
-console.log(getter(getter({ a: { b: 42 }})));
-console.log(getter(getter({ a: { b: 42 }})));
