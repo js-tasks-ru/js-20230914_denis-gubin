@@ -5,5 +5,14 @@
  * @returns {object} - returns the new object
  */
 export const pick = (obj, ...fields) => {
+  const cloneObject = {};
 
+  for (const [key, value] of Object.entries(obj)) {
+    if (fields.includes(key)) {
+      cloneObject[key] = value;
+    }
+  }
+
+  return cloneObject;
 };
+
