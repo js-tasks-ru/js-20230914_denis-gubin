@@ -24,10 +24,7 @@ export default class ColumnChart {
 
     element.innerHTML = this.createTemplate();
 
-    const firstElementChild = element.firstElementChild;
-    firstElementChild.classList.add("column-chart_loading");
-
-    return firstElementChild;
+    return element;
   }
 
   createChartTemplate() {
@@ -37,9 +34,13 @@ export default class ColumnChart {
     }) => `<div style="--value: ${value}" data-tooltip=${percent}></div>`).join("");
   }
 
+  createChartClass() {
+    return 'column-chart ' + (this.data.length === 0 ? 'column-chart_loading' : '');
+}
+
   createTemplate() {
     return `
-    <div class="column-chart" style="--chart-height: 50">
+    <div class="${this.createChartClass()}" style="--chart-height: ${ this.chartHeight }">
       <div class="column-chart__title">
         ${this.label}
         ${this.createTemplateLink()}
