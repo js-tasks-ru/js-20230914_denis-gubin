@@ -1,3 +1,7 @@
+/*
+запуск тестов
+yarn test ./05-dom-document-loading/2-sortable-table-v1/index.spec.js --watch
+ */
 export default class SortableTable {
   element;
   subElements = {};
